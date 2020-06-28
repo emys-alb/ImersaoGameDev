@@ -8,10 +8,10 @@ class Jogo {
     vida = new Vida(fita.configuracoes.vidaMaxima, fita.configuracoes.vidaInicial);
 
     personagem = new Personagem(matrizPersonagem, imagemPersonagem, 0, 30, 100, 138, 200, 276);
-    const inimigoZumbiMulher = new Inimigo(matrizInimigoZumbiMulher, imagemInimigoZumbiMulher, width - 52, 30, 110, 121, 220, 243, 20, 300);
-    const inimigoGrande = new Inimigo(matrizInimigoGrande, imagemInimigoGrande, width, 0, 200, 200, 400, 400, 15, 700);
-    const inimigoVoador = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, width - 50, 200, 100, 75, 200, 150, 10, 300);
-    const inimigoVoadorBaixo = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, width - 50, 80, 100, 75, 200, 150, 15, 900);
+    const inimigoZumbiMulher = new Inimigo(matrizInimigoZumbiMulher, imagemInimigoZumbiMulher, width - 52, 30, 110, 121, 220, 243, 20, 250);
+    const inimigoGrande = new Inimigo(matrizInimigoGrande, imagemInimigoGrande, width, 0, 200, 200, 400, 400, 15, 200);
+    const inimigoVoador = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, width - 50, 200, 100, 75, 200, 150, 10, 130);
+    const inimigoVoadorBaixo = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, width - 50, 80, 100, 75, 200, 150, 15, 170);
 
 
     inimigos.push(inimigoZumbiMulher);
@@ -51,7 +51,14 @@ class Jogo {
         this.inimigoAtual = 0;
       }
 
-      inimigo.velocidade = parseInt(random(10, 40));
+      inimigo.velocidade = parseInt(random(20, 40));
+
+      if (pontuacao.pontos > 500 && pontuacao.pontos <= 1500) {
+        inimigo.velocidade = parseInt(random(30, 50));
+      }
+      if (pontuacao.pontos > 1500) {
+        inimigo.velocidade = parseInt(random(40, 60));
+      }
     }
 
     if (personagem.estaColidindo(inimigo)) {
